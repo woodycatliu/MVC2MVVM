@@ -11,10 +11,6 @@ class MVCViewController: UIViewController {
     
     let viewModel: ViewModel = ViewModel()
     
-    private var list: [DataModel] {
-        return viewModel.list
-    }
-    
     private lazy var tableView: UITableView = {
         let tv = UITableView()
         tv.delegate = self
@@ -27,6 +23,7 @@ class MVCViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        viewModel.fetchData()
     }
 
     private func configureUI() {
@@ -52,16 +49,12 @@ extension MVCViewController: UITableViewDelegate {
 extension MVCViewController: UITableViewDataSource {
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
+        return viewModel.numberOfRowsInSection(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard list.indices.contains(indexPath.row) else {
-            fatalError("List is out of range on \(indexPath.row).")
-        }
         let cell = tableView.dequeueReusableCell(withIdentifier: Cell.description(), for: indexPath) as! Cell
-        
-        let dataModel = list[indexPath.row]
+        let dataModel = viewModel.dataModelFoRowAt(indexPath)
         cell.configureCell(dataModel)
         
         if let imageUrl = dataModel.imageUrl {

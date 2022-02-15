@@ -8,9 +8,9 @@
 import Foundation
 
 class ViewModel {
-    var list: [DataModel] = []
-    
-    private func fetchData() {
+    private var list: [DataModel] = []
+        
+    func fetchData() {
         APIEngine.shared.fetchFoo(req: Request<[DataModel]>()) { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -21,5 +21,26 @@ class ViewModel {
                 print(error)
             }
         }
+    }
+}
+
+// MARK: TableViewModelProtocol
+extension ViewModel: TableViewModelProtocol {
+    
+    typealias DataModelForCell = DataModel
+
+    var numbersOfSection: Int {
+        return 1
+    }
+    
+    func numberOfRowsInSection(_ section: Int) -> Int {
+        return list.count
+    }
+    
+    func dataModelFoRowAt(_ indexPath: IndexPath) -> DataModel {
+        guard list.indices.contains(indexPath.row) else {
+            fatalError("\(#function): \(indexPath) is out of Range")
+        }
+        return list[indexPath.row]
     }
 }
