@@ -78,10 +78,16 @@ extension MVCViewController {
 }
 
 // MARK: DataModelsUpdateProtocol
-extension MVCViewController: DataModelsUpdateProtocol {
-    
+extension MVCViewController: ViewModelDelegateProtocol {
+   
     func updatedDataModels() {
         tableView.reloadData()
     }
     
+    func handleHandle(_ error: APIError) {
+        // whatEver
+    }
+    
 }
+
+

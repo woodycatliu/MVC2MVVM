@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 protocol DataModelsUpdateProtocol: AnyObject {
     func updatedDataModels()
     func updateDataModel(_ index: Int)
@@ -16,10 +17,15 @@ extension DataModelsUpdateProtocol {
     func updateDataModel(_ index: Int) {}
 }
 
+protocol APIErrorHandleProtocol: AnyObject {
+    func handleHandle(_ error: APIError)
+}
+
+typealias ViewModelDelegateProtocol = DataModelsUpdateProtocol&APIErrorHandleProtocol
 
 class ViewModel {
     
-    weak var delegate: DataModelsUpdateProtocol?
+    weak var delegate: ViewModelDelegateProtocol?
 
     private var list: [DataModel] = [] {
         didSet {
@@ -36,6 +42,7 @@ class ViewModel {
             case .failure(let error):
                 // do something
                 print(error)
+                self.delegate?.handleHandle(error)
             }
         }
     }
