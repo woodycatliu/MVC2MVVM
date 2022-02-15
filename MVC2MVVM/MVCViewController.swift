@@ -59,15 +59,6 @@ extension MVCViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cell.description(), for: indexPath) as! Cell
         let dataModel = viewModel.dataModelFoRowAt(indexPath)
         cell.configureCell(dataModel)
-        
-        if let imageUrl = dataModel.imageUrl {
-            APIEngine.shared.fetchImg(urlString: imageUrl, defaultImg: nil) { img in
-                guard let url = cell.imgUrl, url == imageUrl else { return }
-                DispatchQueue.main.async {
-                    cell.imageView?.image = img
-                }
-            }
-        }
         return cell
     }
     

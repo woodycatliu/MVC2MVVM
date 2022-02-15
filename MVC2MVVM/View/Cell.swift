@@ -13,7 +13,30 @@ class Cell: UITableViewCell {
     var itemImageView: UIImageView?
     var priceLabel: UILabel?
     var timestampLabel: UILabel?
-    var imgUrl: String?
+    
+    let viewModel: CellViewModel = CellViewModel()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        viewModel.configureImageView = {
+            [weak self] img in
+            DispatchQueue.main.async {
+                self?.imageView?.image = img
+            }
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        viewModel.imageUrlString = nil
+        itemImageView?.image = nil
+    }
+    
 }
 
 extension Cell {
@@ -22,6 +45,6 @@ extension Cell {
         contentLabel?.text = dataModel.description
         priceLabel?.text = "\(dataModel.price ?? 0)"
         timestampLabel?.text = "\(dataModel.crateOn ?? 0)"
-        imgUrl = dataModel.imageUrl
+        viewModel.imageUrlString = dataModel.imageUrl
     }
 }
