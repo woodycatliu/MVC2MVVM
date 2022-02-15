@@ -22,6 +22,6 @@ extension Cell {
         contentLabel?.text = dataModel.description
         priceLabel?.text = "\(dataModel.price ?? 0)"
         timestampLabel?.text = "\(dataModel.crateOn ?? 0)"
-        imgUrl? = dataModel.imageUrl
+        imgUrl = dataModel.imageUrl
     }
 }

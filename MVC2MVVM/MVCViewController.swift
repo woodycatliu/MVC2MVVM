@@ -9,7 +9,11 @@ import UIKit
 
 class MVCViewController: UIViewController {
     
-    private var list: [DataModel] = []
+    let viewModel: ViewModel = ViewModel()
+    
+    private var list: [DataModel] {
+        return viewModel.list
+    }
     
     private lazy var tableView: UITableView = {
         let tv = UITableView()
@@ -23,7 +27,6 @@ class MVCViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        fetchData()
     }
 
     private func configureUI() {
@@ -76,20 +79,5 @@ extension MVCViewController: UITableViewDataSource {
 
 
 extension MVCViewController {
-    
     private func didSelectedCell() {}
-    
-    private func fetchData() {
-        APIEngine.shared.fetchFoo(req: Request<[DataModel]>()) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let result):
-                self.list = result.value ?? []
-                self.tableView.reloadData()
-            case .failure(let error):
-                // do something
-                print(error)
-            }
-        }
-    }
 }

@@ -19,6 +19,7 @@
 		EF06BCD127BA502300658EF8 /* APIEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF06BCD027BA502300658EF8 /* APIEngine.swift */; };
 		EF06BCD327BA50DD00658EF8 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF06BCD227BA50DD00658EF8 /* DataModel.swift */; };
 		EF06BCD627BB3B7B00658EF8 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF06BCD527BB3B7B00658EF8 /* Cell.swift */; };
+		EF06BCD927BB811F00658EF8 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF06BCD827BB811F00658EF8 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		EF06BCD027BA502300658EF8 /* APIEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEngine.swift; sourceTree = "<group>"; };
 		EF06BCD227BA50DD00658EF8 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		EF06BCD527BB3B7B00658EF8 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		EF06BCD827BB811F00658EF8 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		EF06BC9E27BA439E00658EF8 /* MVC2MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				EF06BCD727BB811500658EF8 /* ViewModel */,
 				EF06BCD427BB3B5800658EF8 /* View */,
 				EF06BCCF27BA500000658EF8 /* Model */,
 				EF06BC9F27BA439E00658EF8 /* AppDelegate.swift */,
@@ -150,6 +153,14 @@
 				EF06BCD527BB3B7B00658EF8 /* Cell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		EF06BCD727BB811500658EF8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EF06BCD827BB811F00658EF8 /* ViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +300,7 @@
 				EF06BCD127BA502300658EF8 /* APIEngine.swift in Sources */,
 				EF06BCA227BA439E00658EF8 /* SceneDelegate.swift in Sources */,
 				EF06BCD627BB3B7B00658EF8 /* Cell.swift in Sources */,
+				EF06BCD927BB811F00658EF8 /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
