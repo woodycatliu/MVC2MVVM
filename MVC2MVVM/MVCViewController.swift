@@ -62,12 +62,10 @@ extension MVCViewController: UITableViewDataSource {
         cell.configureCell(dataModel)
         
         if let imageUrl = dataModel.imageUrl {
-            DispatchQueue.global().async {
-                APIEngine.shared.fetchImg(urlString: imageUrl, defaultImg: nil) { img in
-                    guard let url = cell.imgUrl, url == imageUrl else { return }
-                    DispatchQueue.main.async {
-                        cell.imageView?.image = img
-                    }
+            APIEngine.shared.fetchImg(urlString: imageUrl, defaultImg: nil) { img in
+                guard let url = cell.imgUrl, url == imageUrl else { return }
+                DispatchQueue.main.async {
+                    cell.imageView?.image = img
                 }
             }
         }
