@@ -7,9 +7,26 @@
 
 import Foundation
 
+protocol DataModelsUpdateProtocol: AnyObject {
+    func updatedDataModels()
+    func updateDataModel(_ index: Int)
+}
+
+extension DataModelsUpdateProtocol {
+    func updateDataModel(_ index: Int) {}
+}
+
+
 class ViewModel {
-    private var list: [DataModel] = []
-        
+    
+    weak var delegate: DataModelsUpdateProtocol?
+
+    private var list: [DataModel] = [] {
+        didSet {
+            delegate?.updatedDataModels()
+        }
+    }
+    
     func fetchData() {
         APIEngine.shared.fetchFoo(req: Request<[DataModel]>()) { [weak self] result in
             guard let self = self else { return }

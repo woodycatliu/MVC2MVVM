@@ -9,8 +9,11 @@ import UIKit
 
 class MVCViewController: UIViewController {
     
-    let viewModel: ViewModel = ViewModel()
-    
+    private lazy var viewModel: ViewModel = {
+        let vm = ViewModel()
+        vm.delegate = self
+        return vm
+    }()
     private lazy var tableView: UITableView = {
         let tv = UITableView()
         tv.delegate = self
@@ -70,7 +73,15 @@ extension MVCViewController: UITableViewDataSource {
     
 }
 
-
 extension MVCViewController {
     private func didSelectedCell() {}
+}
+
+// MARK: DataModelsUpdateProtocol
+extension MVCViewController: DataModelsUpdateProtocol {
+    
+    func updatedDataModels() {
+        tableView.reloadData()
+    }
+    
 }
